@@ -7,10 +7,9 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "paths": {
-      "caesar/*": ["src/*"],
-      "caesar": ["src/index.ts"]
+      "caesar/*": ["./src/*"],
+      "caesar": ["./src/index.ts"]
     },
     "noEmit": true,
 
