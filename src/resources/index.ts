@@ -7,4 +7,5 @@ export {
   type ResearchListResponse,
   type ResearchCreateParams,
   type ResearchListParams,
+  type ResearchListResponsesPagination,
 } from './research/research';

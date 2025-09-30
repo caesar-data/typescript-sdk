@@ -2,6 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import { APIPromise } from '../../core/api-promise';
+import { PagePromise, Pagination, type PaginationParams } from '../../core/pagination';
 import { type Uploadable } from '../../core/uploads';
 import { RequestOptions } from '../../internal/request-options';
 import { multipartFormRequestOptions } from '../../internal/uploads';
@@ -29,16 +30,21 @@ export class Files extends APIResource {
    *
    * @example
    * ```ts
-   * const files = await client.research.files.list();
+   * // Automatically fetches more pages as needed.
+   * for await (const fileListResponse of client.research.files.list()) {
+   *   // ...
+   * }
    * ```
    */
   list(
     query: FileListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<FileListResponse> {
-    return this._client.get('/research/files', { query, ...options });
+  ): PagePromise<FileListResponsesPagination, FileListResponse> {
+    return this._client.getAPIList('/research/files', Pagination<FileListResponse>, { query, ...options });
   }
 }
+
+export type FileListResponsesPagination = Pagination<FileListResponse>;
 
 export interface FileCreateResponse {
   /**
@@ -59,74 +65,32 @@ export interface FileCreateResponse {
 
 export interface FileListResponse {
   /**
-   * List of file objects.
+   * Unique identifier for the file.
    */
-  data: Array<FileListResponse.Data>;
+  id: string;
 
-  pagination: FileListResponse.Pagination;
-}
+  /**
+   * MIME type of the file as detected/stored.
+   */
+  content_type: string;
 
-export namespace FileListResponse {
-  export interface Data {
-    /**
-     * Unique identifier for the file.
-     */
-    id: string;
-
-    /**
-     * MIME type of the file as detected/stored.
-     */
-    content_type: string;
-
-    /**
-     * Original uploaded filename.
-     */
-    file_name: string;
-  }
-
-  export interface Pagination {
-    /**
-     * Whether another page is available.
-     */
-    has_next: boolean;
-
-    /**
-     * Page size (items per page).
-     */
-    limit: number;
-
-    /**
-     * Current page number (1-based).
-     */
-    page: number;
-
-    /**
-     * Total number of items (may be omitted).
-     */
-    total?: number;
-  }
+  /**
+   * Original uploaded filename.
+   */
+  file_name: string;
 }
 
 export interface FileCreateParams {
   file: Uploadable;
 }
 
-export interface FileListParams {
-  /**
-   * Page size (items per page).
-   */
-  limit?: number;
-
-  /**
-   * 1-based page index.
-   */
-  page?: number;
-}
+export interface FileListParams extends PaginationParams {}
 
 export declare namespace Files {
   export {
     type FileCreateResponse as FileCreateResponse,
     type FileListResponse as FileListResponse,
+    type FileListResponsesPagination as FileListResponsesPagination,
     type FileCreateParams as FileCreateParams,
     type FileListParams as FileListParams,
   };
