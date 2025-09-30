@@ -13,6 +13,8 @@ import * as Shims from './internal/shims';
 import * as Opts from './internal/request-options';
 import { VERSION } from './version';
 import * as Errors from './core/error';
+import * as CorePagination from './core/pagination';
+import { AbstractPage, type PaginationParams, PaginationResponse } from './core/pagination';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
@@ -22,6 +24,7 @@ import {
   ResearchCreateResponse,
   ResearchListParams,
   ResearchListResponse,
+  ResearchListResponsesPagination,
   ResearchRetrieveResponse,
 } from './resources/research/research';
 import { type Fetch } from './internal/builtin-types';
@@ -489,6 +492,25 @@ export class Caesar {
     return { response, options, controller, requestLogID, retryOfRequestLogID, startTime };
   }
 
+  getAPIList<Item, PageClass extends CorePagination.AbstractPage<Item> = CorePagination.AbstractPage<Item>>(
+    path: string,
+    Page: new (...args: any[]) => PageClass,
+    opts?: RequestOptions,
+  ): CorePagination.PagePromise<PageClass, Item> {
+    return this.requestAPIList(Page, { method: 'get', path, ...opts });
+  }
+
+  requestAPIList<
+    Item = unknown,
+    PageClass extends CorePagination.AbstractPage<Item> = CorePagination.AbstractPage<Item>,
+  >(
+    Page: new (...args: ConstructorParameters<typeof CorePagination.AbstractPage>) => PageClass,
+    options: FinalRequestOptions,
+  ): CorePagination.PagePromise<PageClass, Item> {
+    const request = this.makeRequest(options, null, undefined);
+    return new CorePagination.PagePromise<PageClass, Item>(this as any as Caesar, request, Page);
+  }
+
   async fetchWithTimeout(
     url: RequestInfo,
     init: RequestInit | undefined,
@@ -729,11 +751,15 @@ Caesar.Research = Research;
 export declare namespace Caesar {
   export type RequestOptions = Opts.RequestOptions;
 
+  export import Pagination = CorePagination.Pagination;
+  export { type PaginationParams as PaginationParams, type PaginationResponse as PaginationResponse };
+
   export {
     Research as Research,
     type ResearchCreateResponse as ResearchCreateResponse,
     type ResearchRetrieveResponse as ResearchRetrieveResponse,
     type ResearchListResponse as ResearchListResponse,
+    type ResearchListResponsesPagination as ResearchListResponsesPagination,
     type ResearchCreateParams as ResearchCreateParams,
     type ResearchListParams as ResearchListParams,
   };

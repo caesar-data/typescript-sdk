@@ -2,10 +2,18 @@
 
 import { APIResource } from '../../core/resource';
 import * as FilesAPI from './files';
-import { FileCreateParams, FileCreateResponse, FileListParams, FileListResponse, Files } from './files';
+import {
+  FileCreateParams,
+  FileCreateResponse,
+  FileListParams,
+  FileListResponse,
+  FileListResponsesPagination,
+  Files,
+} from './files';
 import * as ResultsAPI from './results';
 import { ResultRetrieveContentParams, ResultRetrieveContentResponse, Results } from './results';
 import { APIPromise } from '../../core/api-promise';
+import { PagePromise, Pagination, type PaginationParams } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
@@ -44,16 +52,21 @@ export class Research extends APIResource {
    *
    * @example
    * ```ts
-   * const research = await client.research.list();
+   * // Automatically fetches more pages as needed.
+   * for await (const researchListResponse of client.research.list()) {
+   *   // ...
+   * }
    * ```
    */
   list(
     query: ResearchListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<ResearchListResponse> {
-    return this._client.get('/research', { query, ...options });
+  ): PagePromise<ResearchListResponsesPagination, ResearchListResponse> {
+    return this._client.getAPIList('/research', Pagination<ResearchListResponse>, { query, ...options });
   }
 }
+
+export type ResearchListResponsesPagination = Pagination<ResearchListResponse>;
 
 export interface ResearchCreateResponse {
   /**
@@ -135,100 +148,67 @@ export namespace ResearchRetrieveResponse {
 
 export interface ResearchListResponse {
   /**
-   * List of research objects.
+   * Research job identifier.
    */
-  data: Array<ResearchListResponse.Data>;
+  id: string;
 
-  pagination: ResearchListResponse.Pagination;
+  /**
+   * ISO 8601 timestamp when the job was created.
+   */
+  created_at: string;
+
+  /**
+   * Original query.
+   */
+  query: string;
+
+  /**
+   * Ranked retrieval results and citations.
+   */
+  results: Array<ResearchListResponse.Result>;
+
+  /**
+   * Current status of the research job.
+   */
+  status: 'queued' | 'searching' | 'summarizing' | 'analyzing' | 'completed' | 'failed' | 'researching';
+
+  /**
+   * Final content/synthesis (null until available).
+   */
+  content?: string | null;
+
+  /**
+   * Post-processed content (e.g., formatted/converted).
+   */
+  transformed_content?: string | null;
 }
 
 export namespace ResearchListResponse {
-  export interface Data {
+  export interface Result {
     /**
-     * Research job identifier.
+     * Result object identifier.
      */
     id: string;
 
     /**
-     * ISO 8601 timestamp when the job was created.
+     * Relevance score (0–1).
      */
-    created_at: string;
+    score: number;
 
     /**
-     * Original query.
+     * Result title.
      */
-    query: string;
+    title: string;
 
     /**
-     * Ranked retrieval results and citations.
+     * Canonical URL of the result.
      */
-    results: Array<Data.Result>;
+    url: string;
 
     /**
-     * Current status of the research job.
+     * Index used for inline citations (if present).
      */
-    status: 'queued' | 'searching' | 'summarizing' | 'analyzing' | 'completed' | 'failed' | 'researching';
-
-    /**
-     * Final content/synthesis (null until available).
-     */
-    content?: string | null;
-
-    /**
-     * Post-processed content (e.g., formatted/converted).
-     */
-    transformed_content?: string | null;
-  }
-
-  export namespace Data {
-    export interface Result {
-      /**
-       * Result object identifier.
-       */
-      id: string;
-
-      /**
-       * Relevance score (0–1).
-       */
-      score: number;
-
-      /**
-       * Result title.
-       */
-      title: string;
-
-      /**
-       * Canonical URL of the result.
-       */
-      url: string;
-
-      /**
-       * Index used for inline citations (if present).
-       */
-      citation_index?: number;
-    }
-  }
-
-  export interface Pagination {
-    /**
-     * Whether another page is available.
-     */
-    has_next: boolean;
-
-    /**
-     * Page size (items per page).
-     */
-    limit: number;
-
-    /**
-     * Current page number (1-based).
-     */
-    page: number;
-
-    /**
-     * Total number of items (may be omitted).
-     */
-    total?: number;
+    citation_index?: number;
   }
 }
 
@@ -254,17 +234,7 @@ export interface ResearchCreateParams {
   system_prompt?: string;
 }
 
-export interface ResearchListParams {
-  /**
-   * Page size (items per page).
-   */
-  limit?: number;
-
-  /**
-   * 1-based page index.
-   */
-  page?: number;
-}
+export interface ResearchListParams extends PaginationParams {}
 
 Research.Files = Files;
 Research.Results = Results;
@@ -274,6 +244,7 @@ export declare namespace Research {
     type ResearchCreateResponse as ResearchCreateResponse,
     type ResearchRetrieveResponse as ResearchRetrieveResponse,
     type ResearchListResponse as ResearchListResponse,
+    type ResearchListResponsesPagination as ResearchListResponsesPagination,
     type ResearchCreateParams as ResearchCreateParams,
     type ResearchListParams as ResearchListParams,
   };
@@ -282,6 +253,7 @@ export declare namespace Research {
     Files as Files,
     type FileCreateResponse as FileCreateResponse,
     type FileListResponse as FileListResponse,
+    type FileListResponsesPagination as FileListResponsesPagination,
     type FileCreateParams as FileCreateParams,
     type FileListParams as FileListParams,
   };

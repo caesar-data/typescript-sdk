@@ -6,6 +6,7 @@ export {
   type FileListResponse,
   type FileCreateParams,
   type FileListParams,
+  type FileListResponsesPagination,
 } from './files';
 export {
   Research,
@@ -14,5 +15,6 @@ export {
   type ResearchListResponse,
   type ResearchCreateParams,
   type ResearchListParams,
+  type ResearchListResponsesPagination,
 } from './research';
 export { Results, type ResultRetrieveContentResponse, type ResultRetrieveContentParams } from './results';

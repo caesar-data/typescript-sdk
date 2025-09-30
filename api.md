@@ -10,7 +10,7 @@ Methods:
 
 - <code title="post /research">client.research.<a href="./src/resources/research/research.ts">create</a>({ ...params }) -> ResearchCreateResponse</code>
 - <code title="get /research/{id}">client.research.<a href="./src/resources/research/research.ts">retrieve</a>(id) -> ResearchRetrieveResponse</code>
-- <code title="get /research">client.research.<a href="./src/resources/research/research.ts">list</a>({ ...params }) -> ResearchListResponse</code>
+- <code title="get /research">client.research.<a href="./src/resources/research/research.ts">list</a>({ ...params }) -> ResearchListResponsesPagination</code>
 
 ## Files
 
@@ -22,7 +22,7 @@ Types:
 Methods:
 
 - <code title="post /research/files">client.research.files.<a href="./src/resources/research/files.ts">create</a>({ ...params }) -> FileCreateResponse</code>
-- <code title="get /research/files">client.research.files.<a href="./src/resources/research/files.ts">list</a>({ ...params }) -> FileListResponse</code>
+- <code title="get /research/files">client.research.files.<a href="./src/resources/research/files.ts">list</a>({ ...params }) -> FileListResponsesPagination</code>
 
 ## Results
 
