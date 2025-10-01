@@ -8,8 +8,8 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "paths": {
-      "caesar/*": ["./src/*"],
-      "caesar": ["./src/index.ts"]
+      "caesar-data/*": ["./src/*"],
+      "caesar-data": ["./src/index.ts"]
     },
     "noEmit": true,
 

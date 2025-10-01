@@ -55,12 +55,12 @@ $ cd typescript-sdk
 # With yarn
 $ yarn link
 $ cd ../my-package
-$ yarn link caesar
+$ yarn link caesar-data
 
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global caesar
+$ pnpm link -—global caesar-data
 ```
 
 ## Running tests

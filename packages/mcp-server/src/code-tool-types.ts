@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { ClientOptions } from 'caesar';
+import { ClientOptions } from 'caesar-data';
 
 export type WorkerInput = {
   opts: ClientOptions;

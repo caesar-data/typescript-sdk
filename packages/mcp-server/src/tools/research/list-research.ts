@@ -4,7 +4,7 @@ import { maybeFilter } from 'caesar-mcp/filtering';
 import { Metadata, asTextContentResult } from 'caesar-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import Caesar from 'caesar';
+import Caesar from 'caesar-data';
 
 export const metadata: Metadata = {
   resource: 'research',

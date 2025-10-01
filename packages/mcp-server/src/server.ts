@@ -10,8 +10,8 @@ import {
   Implementation,
   Tool,
 } from '@modelcontextprotocol/sdk/types.js';
-import { ClientOptions } from 'caesar';
-import Caesar from 'caesar';
+import { ClientOptions } from 'caesar-data';
+import Caesar from 'caesar-data';
 import {
   applyCompatibilityTransformations,
   ClientCapabilities,
@@ -27,13 +27,13 @@ import { McpOptions } from './options';
 export { McpOptions } from './options';
 export { ClientType } from './compat';
 export { Filter } from './tools';
-export { ClientOptions } from 'caesar';
+export { ClientOptions } from 'caesar-data';
 export { endpoints } from './tools';
 
 export const newMcpServer = () =>
   new McpServer(
     {
-      name: 'caesar_api',
+      name: 'caesar_data_api',
       version: '0.0.1',
     },
     { capabilities: { tools: {}, logging: {} } },

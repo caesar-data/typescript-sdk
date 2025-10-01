@@ -1,4 +1,4 @@
-import { createPathTagFunction, encodeURIPath } from 'caesar/internal/utils/path';
+import { createPathTagFunction, encodeURIPath } from 'caesar-data/internal/utils/path';
 import { inspect } from 'node:util';
 import { runInNewContext } from 'node:vm';
 
