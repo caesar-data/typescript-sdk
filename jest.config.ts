@@ -7,8 +7,8 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^caesar$': '<rootDir>/src/index.ts',
-    '^caesar/(.*)$': '<rootDir>/src/$1',
+    '^caesar-data$': '<rootDir>/src/index.ts',
+    '^caesar-data/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',

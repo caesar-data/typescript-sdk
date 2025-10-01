@@ -1,4 +1,4 @@
-import Caesar from 'caesar';
+import Caesar from 'caesar-data';
 import { Endpoint, asTextContentResult, ToolCallResult } from './tools/types';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 import { z } from 'zod';

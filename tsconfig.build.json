@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "caesar/*": ["./dist/src/*"],
-      "caesar": ["./dist/src/index.ts"]
+      "caesar-data/*": ["./dist/src/*"],
+      "caesar-data": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,

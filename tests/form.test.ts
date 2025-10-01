@@ -1,5 +1,5 @@
-import { multipartFormRequestOptions, createForm } from 'caesar/internal/uploads';
-import { toFile } from 'caesar/core/uploads';
+import { multipartFormRequestOptions, createForm } from 'caesar-data/internal/uploads';
+import { toFile } from 'caesar-data/core/uploads';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {
