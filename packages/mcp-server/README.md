@@ -9,8 +9,8 @@ It is generated with [Stainless](https://www.stainless.com/).
 Because it's not published yet, clone the repo and build it:
 
 ```sh
-git clone git@github.com:stainless-sdks/caesar-typescript.git
-cd caesar-typescript
+git clone git@github.com:caesar-data/typescript-sdk.git
+cd typescript-sdk
 ./scripts/bootstrap
 ./scripts/build
 ```
@@ -40,7 +40,7 @@ For clients with a configuration JSON, it might look something like this:
   "mcpServers": {
     "caesar_api": {
       "command": "node",
-      "args": ["/path/to/local/caesar-typescript/packages/mcp-server", "--client=claude", "--tools=all"],
+      "args": ["/path/to/local/typescript-sdk/packages/mcp-server", "--client=claude", "--tools=all"],
       "env": {
         "CAESAR_API_KEY": "My API Key"
       }
