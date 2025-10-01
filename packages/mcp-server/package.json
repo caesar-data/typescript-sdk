@@ -8,10 +8,10 @@
   "type": "commonjs",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stainless-sdks/caesar-typescript.git",
+    "url": "git+https://github.com/caesar-data/typescript-sdk.git",
     "directory": "packages/mcp-server"
   },
-  "homepage": "https://github.com/stainless-sdks/caesar-typescript/tree/main/packages/mcp-server#readme",
+  "homepage": "https://github.com/caesar-data/typescript-sdk/tree/main/packages/mcp-server#readme",
   "license": "Apache-2.0",
   "packageManager": "yarn@1.22.22",
   "private": false,
