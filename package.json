@@ -2,7 +2,7 @@
   "name": "caesar-data",
   "version": "0.0.1",
   "description": "The official TypeScript library for the Caesar API",
-  "author": "Caesar <>",
+  "author": "Caesar <dev@caesar.xyz>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
