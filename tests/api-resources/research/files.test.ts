@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Caesar, { toFile } from 'caesar';
+import Caesar, { toFile } from 'caesar-data';
 
 const client = new Caesar({
   apiKey: 'My API Key',

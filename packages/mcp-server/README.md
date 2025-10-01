@@ -4,31 +4,16 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Installation
 
-### Building
+### Direct invocation
 
-Because it's not published yet, clone the repo and build it:
-
-```sh
-git clone git@github.com:stainless-sdks/caesar-typescript.git
-cd caesar-typescript
-./scripts/bootstrap
-./scripts/build
-```
-
-### Running
+You can run the MCP Server directly via `npx`:
 
 ```sh
-# set env vars as needed
 export CAESAR_API_KEY="My API Key"
-node ./packages/mcp-server/dist/index.js
+npx -y caesar-mcp@latest
 ```
-
-> [!NOTE]
-> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npx -y caesar-mcp`
 
 ### Via MCP Client
-
-[Build the project](#building) as mentioned above.
 
 There is a partial list of existing clients at [modelcontextprotocol.io](https://modelcontextprotocol.io/clients). If you already
 have a client, consult their documentation to install the MCP server.
@@ -38,9 +23,9 @@ For clients with a configuration JSON, it might look something like this:
 ```json
 {
   "mcpServers": {
-    "caesar_api": {
-      "command": "node",
-      "args": ["/path/to/local/caesar-typescript/packages/mcp-server", "--client=claude", "--tools=all"],
+    "caesar_data_api": {
+      "command": "npx",
+      "args": ["-y", "caesar-mcp", "--client=claude", "--tools=all"],
       "env": {
         "CAESAR_API_KEY": "My API Key"
       }
@@ -157,7 +142,7 @@ A configuration JSON for this server might look like this, assuming the server i
 ```json
 {
   "mcpServers": {
-    "caesar_api": {
+    "caesar_data_api": {
       "url": "http://localhost:3000",
       "headers": {
         "Authorization": "Bearer <auth value>"

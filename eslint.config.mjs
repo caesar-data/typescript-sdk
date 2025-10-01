@@ -25,7 +25,7 @@ export default tseslint.config(
         {
           patterns: [
             {
-              regex: '^caesar(/.*)?',
+              regex: '^caesar-data(/.*)?',
               message: 'Use a relative import, not a package import.',
             },
           ],

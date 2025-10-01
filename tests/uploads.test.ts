@@ -1,6 +1,6 @@
 import fs from 'fs';
-import type { ResponseLike } from 'caesar/internal/to-file';
-import { toFile } from 'caesar/core/uploads';
+import type { ResponseLike } from 'caesar-data/internal/to-file';
+import { toFile } from 'caesar-data/core/uploads';
 import { File } from 'node:buffer';
 
 class MyClass {
@@ -97,7 +97,7 @@ describe('missing File error message', () => {
   });
 
   test('is thrown', async () => {
-    const uploads = await import('caesar/core/uploads');
+    const uploads = await import('caesar-data/core/uploads');
     await expect(
       uploads.toFile(mockResponse({ url: 'https://example.com/my/audio.mp3' })),
     ).rejects.toMatchInlineSnapshot(

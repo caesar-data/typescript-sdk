@@ -1,10 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIPromise } from 'caesar/core/api-promise';
+import { APIPromise } from 'caesar-data/core/api-promise';
 
 import util from 'node:util';
-import Caesar from 'caesar';
-import { APIUserAbortError } from 'caesar';
+import Caesar from 'caesar-data';
+import { APIUserAbortError } from 'caesar-data';
 const defaultFetch = fetch;
 
 describe('instantiate client', () => {

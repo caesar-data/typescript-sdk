@@ -4,13 +4,14 @@
   "version": "0.0.1",
   "description": "The official MCP Server for the Caesar API",
   "author": {
-    "name": "Caesar"
+    "name": "Caesar",
+    "email": "dev@caesar.xyz"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stainless-sdks/caesar-typescript.git"
+    "url": "git+https://github.com/caesar-data/typescript-sdk.git"
   },
-  "homepage": "https://github.com/stainless-sdks/caesar-typescript/tree/main/packages/mcp-server#readme",
+  "homepage": "https://github.com/caesar-data/typescript-sdk/tree/main/packages/mcp-server#readme",
   "documentation": "https://docs.caesar.xyz/",
   "server": {
     "type": "node",
