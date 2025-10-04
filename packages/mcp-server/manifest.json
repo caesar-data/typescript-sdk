@@ -12,7 +12,7 @@
     "url": "git+https://github.com/caesar-data/typescript-sdk.git"
   },
   "homepage": "https://github.com/caesar-data/typescript-sdk/tree/main/packages/mcp-server#readme",
-  "documentation": "https://docs.caesar.xyz/",
+  "documentation": "https://docs.caesar.xyz",
   "server": {
     "type": "node",
     "entry_point": "index.js",
