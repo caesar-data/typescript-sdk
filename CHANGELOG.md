@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0 (2025-10-04)
+
+Full Changelog: [v1.0.0...v1.1.0](https://github.com/caesar-data/typescript-sdk/compare/v1.0.0...v1.1.0)
+
+### Features
+
+* **api:** manual updates ([6897718](https://github.com/caesar-data/typescript-sdk/commit/689771885a94ce63c07175c7285d1fe157b592c9))
+
 ## 1.0.0 (2025-10-04)
 
 Full Changelog: [v0.2.0...v1.0.0](https://github.com/caesar-data/typescript-sdk/compare/v0.2.0...v1.0.0)
