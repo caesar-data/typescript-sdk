@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0 (2025-10-04)
+
+Full Changelog: [v0.2.0...v1.0.0](https://github.com/caesar-data/typescript-sdk/compare/v0.2.0...v1.0.0)
+
+### Chores
+
+* **internal:** codegen related update ([4ffc41f](https://github.com/caesar-data/typescript-sdk/commit/4ffc41f6dc84bb8e1310eded81a18f4f48732373))
+* **jsdoc:** fix [@link](https://github.com/link) annotations to refer only to parts of the package‘s public interface ([6808af6](https://github.com/caesar-data/typescript-sdk/commit/6808af6d6871c3f5122f69f443c67aebf28dbb90))
+
 ## 0.2.0 (2025-10-01)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/caesar-data/typescript-sdk/compare/v0.1.0...v0.2.0)
