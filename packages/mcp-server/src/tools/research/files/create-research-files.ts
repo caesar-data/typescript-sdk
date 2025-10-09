@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'create_research_files',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nUpload a file via multipart form and create a Research File object.\n\n# Response Schema\n```json\n{\n  type: 'object',\n  properties: {\n    id: {\n      type: 'string',\n      description: 'Unique identifier for the file.'\n    },\n    content_type: {\n      type: 'string',\n      description: 'MIME type of the file as detected/stored.'\n    },\n    file_name: {\n      type: 'string',\n      description: 'Original uploaded filename.'\n    }\n  },\n  required: [    'id',\n    'content_type',\n    'file_name'\n  ]\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nUpload a file via multipart form and create a Research File object.\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/file_create_response',\n  $defs: {\n    file_create_response: {\n      type: 'object',\n      properties: {\n        id: {\n          type: 'string',\n          description: 'Unique identifier for the file.'\n        },\n        content_type: {\n          type: 'string',\n          description: 'MIME type of the file as detected/stored.'\n        },\n        file_name: {\n          type: 'string',\n          description: 'Original uploaded filename.'\n        }\n      },\n      required: [        'id',\n        'content_type',\n        'file_name'\n      ]\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'retrieve_content_research_results',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nReturns the raw content for a specific result within a research object.\n\n\n# Response Schema\n```json\n{\n  type: 'object',\n  properties: {\n    content: {\n      type: 'string',\n      description: 'Raw extracted content for this result (may include HTML, markdown, or plain text).'\n    }\n  },\n  required: [    'content'\n  ]\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nReturns the raw content for a specific result within a research object.\n\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/result_retrieve_content_response',\n  $defs: {\n    result_retrieve_content_response: {\n      type: 'object',\n      properties: {\n        content: {\n          type: 'string',\n          description: 'Raw extracted content for this result (may include HTML, markdown, or plain text).'\n        }\n      },\n      required: [        'content'\n      ]\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {
