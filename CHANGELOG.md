@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.1 (2025-10-09)
+
+Full Changelog: [v1.1.0...v1.1.1](https://github.com/caesar-data/typescript-sdk/compare/v1.1.0...v1.1.1)
+
+### Chores
+
+* extract some types in mcp docs ([190cca3](https://github.com/caesar-data/typescript-sdk/commit/190cca35a1688c55856b7bf98fc6ff7b1846b054))
+* **internal:** use npm pack for build uploads ([f3839b3](https://github.com/caesar-data/typescript-sdk/commit/f3839b3fd54b91eac9869c49daddf80db8fc98e2))
+
 ## 1.1.0 (2025-10-04)
 
 Full Changelog: [v1.0.0...v1.1.0](https://github.com/caesar-data/typescript-sdk/compare/v1.0.0...v1.1.0)
