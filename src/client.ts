@@ -27,6 +27,7 @@ import {
   ResearchListResponsesPagination,
   ResearchRetrieveResponse,
 } from './resources/research/research';
+import { X402 } from './resources/x402/x402';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -743,9 +744,11 @@ export class Caesar {
 
   static toFile = Uploads.toFile;
 
+  x402: API.X402 = new API.X402(this);
   research: API.Research = new API.Research(this);
 }
 
+Caesar.X402 = X402;
 Caesar.Research = Research;
 
 export declare namespace Caesar {
@@ -753,6 +756,8 @@ export declare namespace Caesar {
 
   export import Pagination = CorePagination.Pagination;
   export { type PaginationParams as PaginationParams, type PaginationResponse as PaginationResponse };
+
+  export { X402 as X402 };
 
   export {
     Research as Research,

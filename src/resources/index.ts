@@ -9,3 +9,4 @@ export {
   type ResearchListParams,
   type ResearchListResponsesPagination,
 } from './research/research';
+export { X402 } from './x402/x402';
