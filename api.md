@@ -1,3 +1,15 @@
+# X402
+
+## Research
+
+Types:
+
+- <code><a href="./src/resources/x402/research.ts">ResearchCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /x402/research">client.x402.research.<a href="./src/resources/x402/research.ts">create</a>({ ...params }) -> ResearchCreateResponse</code>
+
 # Research
 
 Types:

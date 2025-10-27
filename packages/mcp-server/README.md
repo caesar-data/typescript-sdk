@@ -172,7 +172,7 @@ http://localhost:3000?client=cursor&capability=tool-name-length%3D40
 import { server, endpoints, init } from "caesar-mcp/server";
 
 // import a specific tool
-import createResearch from "caesar-mcp/tools/research/create-research";
+import createX402Research from "caesar-mcp/tools/x402/research/create-x402-research";
 
 // initialize the server and all endpoints
 init({ server, endpoints });
@@ -197,12 +197,16 @@ const myCustomEndpoint = {
 };
 
 // initialize the server with your custom endpoints
-init({ server: myServer, endpoints: [createResearch, myCustomEndpoint] });
+init({ server: myServer, endpoints: [createX402Research, myCustomEndpoint] });
 ```
 
 ## Available Tools
 
 The following tools are available in this MCP server.
+
+### Resource `x402.research`:
+
+- `create_x402_research` (`write`): Start a new research job using x402 payment. This endpoint mints a temporary API key that is returned in the response and is billed via the x402 settlement flow instead of your Caesar API credits.
 
 ### Resource `research`:
 

@@ -4,6 +4,7 @@ import { Metadata, Endpoint, HandlerFunction } from './types';
 
 export { Metadata, Endpoint, HandlerFunction };
 
+import create_x402_research from './x402/research/create-x402-research';
 import create_research from './research/create-research';
 import retrieve_research from './research/retrieve-research';
 import list_research from './research/list-research';
@@ -17,6 +18,7 @@ function addEndpoint(endpoint: Endpoint) {
   endpoints.push(endpoint);
 }
 
+addEndpoint(create_x402_research);
 addEndpoint(create_research);
 addEndpoint(retrieve_research);
 addEndpoint(list_research);
