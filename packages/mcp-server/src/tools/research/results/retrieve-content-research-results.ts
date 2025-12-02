@@ -49,7 +49,7 @@ export const handler = async (client: Caesar, args: Record<string, unknown> | un
       await maybeFilter(jq_filter, await client.research.results.retrieveContent(resultId, body)),
     );
   } catch (error) {
-    if (isJqError(error)) {
+    if (error instanceof Caesar.APIError || isJqError(error)) {
       return asErrorResult(error.message);
     }
     throw error;
