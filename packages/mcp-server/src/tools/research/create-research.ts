@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { maybeFilter } from 'caesar-mcp/filtering';
-import { Metadata, asTextContentResult } from 'caesar-mcp/tools/types';
+import { isJqError, maybeFilter } from 'caesar-mcp/filtering';
+import { Metadata, asErrorResult, asTextContentResult } from 'caesar-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import Caesar from 'caesar-data';
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'create_research',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nStart a new research job using a query and optional file IDs.\n\n# Response Schema\n```json\n{\n  type: 'object',\n  properties: {\n    id: {\n      type: 'string',\n      description: 'Research job identifier.'\n    },\n    status: {\n      type: 'string',\n      description: 'Current status of the research job.',\n      enum: [        'queued',\n        'searching',\n        'summarizing',\n        'analyzing',\n        'completed',\n        'failed',\n        'researching'\n      ]\n    }\n  },\n  required: [    'id',\n    'status'\n  ]\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nStart a new research job using a query and optional file IDs.\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/research_create_response',\n  $defs: {\n    research_create_response: {\n      type: 'object',\n      properties: {\n        id: {\n          type: 'string',\n          description: 'Research job identifier.'\n        },\n        status: {\n          type: 'string',\n          description: 'Current status of the research job.',\n          enum: [            'queued',\n            'searching',\n            'summarizing',\n            'analyzing',\n            'completed',\n            'failed',\n            'researching'\n          ]\n        }\n      },\n      required: [        'id',\n        'status'\n      ]\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {
@@ -55,7 +55,14 @@ export const tool: Tool = {
 
 export const handler = async (client: Caesar, args: Record<string, unknown> | undefined) => {
   const { jq_filter, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(jq_filter, await client.research.create(body)));
+  try {
+    return asTextContentResult(await maybeFilter(jq_filter, await client.research.create(body)));
+  } catch (error) {
+    if (error instanceof Caesar.APIError || isJqError(error)) {
+      return asErrorResult(error.message);
+    }
+    throw error;
+  }
 };
 
 export default { metadata, tool, handler };
